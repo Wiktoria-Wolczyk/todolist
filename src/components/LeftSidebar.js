@@ -3,7 +3,7 @@ export const LeftSidebar = () => {
       <div
         className="Todos"
         style={{
-          backgroundColor: "lightblue",
+          backgroundColor: "lightgray",
           width: "20%",
           height: "100%",
           display: "flex",
