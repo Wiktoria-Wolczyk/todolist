@@ -4,7 +4,10 @@ import backgroundphoto from "./backgroundphoto.jpg";
 export const Tasks = () => {
   const [text, setText] = useState("");
 
-  const [taskArr, setTaskArr] = useState(["test"]);
+  const [taskArr, setTaskArr] = useState([]);
+  let nextId = 0;
+
+  let date = new Date();
 
   return (
     <>
@@ -35,7 +38,7 @@ export const Tasks = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            textAlign: "left",
+            textAlign: "space-between",
             zIndex: 1,
             width: "100%",
             height: "100%",
@@ -51,9 +54,16 @@ export const Tasks = () => {
           >
             Today's tasks
           </span>
+          {date.toDateString()}
           <ul className="taskContainer">
             {taskArr.map((task) => (
-              <li className="taskItem">{task}</li>
+              <li className="taskItem" key={task.id}>
+                {task.text}
+                <i
+                  className="fa-solid fa-trash-can fa-lg"
+                  style={{ color: "#000000" }}
+                ></i>
+              </li>
             ))}
           </ul>
 
@@ -71,15 +81,23 @@ export const Tasks = () => {
           >
             <label
               style={{
-                marginLeft: 35,
+                marginLeft: 25,
+                paddingRight: 20,
               }}
             >
               {" "}
               New todo
             </label>
+            <select name="todos" id="todos-select">
+              <option value="">Choose option:</option>
+              <option value="home">Household duties</option>
+              <option value="work">Tasks at work</option>
+              <option value="shop">Shopping list</option>
+            </select>
             <input
               className="textInput"
               type="text"
+              placeholder="Your new 'todo'"
               value={text}
               onChange={(e) => setText(e.target.value)}
               style={{
@@ -89,9 +107,13 @@ export const Tasks = () => {
               }}
             />
             <button
+              onClick={() => {
+                setTaskArr([...taskArr, { id: nextId++, text: text }]);
+                setText("");
+              }}
               style={{
                 position: "absolute",
-                left: "85%",
+                left: "90%",
               }}
             >
               Send

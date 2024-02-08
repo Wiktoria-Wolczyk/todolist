@@ -48,6 +48,11 @@
 }
 
 .taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: white;
   margin-top: 10px;
   width: 90%;
@@ -58,7 +63,8 @@
 }
 
 .textInput {
-  width: 400px;
+  width: 350px;
   height: 30px;
   background-color: rgb(214, 214, 214);
+  margin-left: 120px;
 }
