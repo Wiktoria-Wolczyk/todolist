@@ -59,7 +59,15 @@
   height: 50px;
   font-size: 20px;
   opacity: 90%;
+
   /* list-style: circle; */
+}
+#choice {
+  margin-left: 660px;
+  font-size: 15px;
+}
+.fa-trash-can {
+  cursor: pointer;
 }
 
 .textInput {
