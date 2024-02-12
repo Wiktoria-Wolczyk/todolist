@@ -2,10 +2,25 @@ import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
 import { LeftSidebar } from "./Sidebar/Left/LeftSidebar.jsx";
 
+const constantTasks = [
+  { id: 0, text: "jeden", choice: "home" },
+  { id: 1, text: "dwa", choice: "work" },
+  { id: 2, text: "trzy", choice: "home" },
+  { id: 3, text: "cztery", choice: "work" },
+  { id: 4, text: "pięć", choice: "home" },
+  { id: 5, text: "sześć", choice: "work" },
+  { id: 6, text: "siedem", choice: "home" },
+  { id: 7, text: "osiem", choice: "work" },
+  { id: 8, text: "dziewięć", choice: "work" },
+  { id: 9, text: "dziesięć", choice: "home" },
+];
+
 export const Tasks = () => {
   const [text, setText] = useState("");
 
-  const [taskArr, setTaskArr] = useState([]);
+  const [taskArr, setTaskArr] = useState(constantTasks);
+  console.log(1);
+
   let nextId = 0;
 
   let date = new Date();

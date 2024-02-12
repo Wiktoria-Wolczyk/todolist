@@ -19,14 +19,13 @@ export const LeftSidebar = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            alignItems: "space-between",
+            alignItems: "center",
             width: "20%",
             height: "80%",
             position: "absolute",
             backgroundColor: "lightgrey",
             top: "10%",
             paddingTop: "2%",
-            paddingLeft: "1%",
           }}
         >
           <div className="showGroup">
