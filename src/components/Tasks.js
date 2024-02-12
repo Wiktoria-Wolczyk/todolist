@@ -9,6 +9,8 @@ export const Tasks = () => {
 
   let date = new Date();
 
+  const [selectChoice, setSelectChoice] = useState("");
+
   return (
     <>
       <div
@@ -59,7 +61,11 @@ export const Tasks = () => {
             {taskArr.map((task) => (
               <li className="taskItem" key={task.id}>
                 {task.text}
+                <span id="choice">{task.choice}</span>
                 <i
+                  onClick={() => {
+                    setTaskArr(taskArr.filter((t) => t.id !== task.id));
+                  }}
                   className="fa-solid fa-trash-can fa-lg"
                   style={{ color: "#000000" }}
                 ></i>
@@ -88,7 +94,11 @@ export const Tasks = () => {
               {" "}
               New todo
             </label>
-            <select name="todos" id="todos-select">
+            <select
+              name="todos"
+              id="todos-select"
+              onChange={(e) => setSelectChoice(e.target.value)}
+            >
               <option value="">Choose option:</option>
               <option value="home">Household duties</option>
               <option value="work">Tasks at work</option>
@@ -108,7 +118,10 @@ export const Tasks = () => {
             />
             <button
               onClick={() => {
-                setTaskArr([...taskArr, { id: nextId++, text: text }]);
+                setTaskArr([
+                  ...taskArr,
+                  { id: nextId++, text: text, choice: selectChoice },
+                ]);
                 setText("");
               }}
               style={{
