@@ -128,6 +128,7 @@ export const Tasks = () => {
                 position: "absolute",
                 left: "90%",
               }}
+              disabled={text === "" || selectChoice === "" ? true : false}
             >
               Send
             </button>
