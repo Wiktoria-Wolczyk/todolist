@@ -2,7 +2,7 @@ export const RightSidebar = () => {
   return (
     <div
       style={{
-        backgroundColor: "yellow",
+        backgroundColor: "lightgrey",
         width: '20%',
         height: '100%',
         display: "flex",
