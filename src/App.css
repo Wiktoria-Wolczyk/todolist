@@ -42,6 +42,38 @@
   }
 }
 
+.todosList {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.backgroundPicture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(3px);
+}
+
+.displayTodoRectangle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: space-between;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 20px;
+}
+
+#fontInHeading {
+  font-size: 45px;
+}
+
 .taskContainer {
   width: 100%;
   list-style-position: inside;
@@ -68,11 +100,35 @@
 }
 .fa-trash-can {
   cursor: pointer;
+  color: black;
+}
+
+.select-And-TextInput-Rectangle {
+  position: absolute;
+  top: 93%;
+  left: 10%;
+}
+
+#label-NewTodo {
+  margin-left: 25px;
+  padding-right: 20px;
+}
+
+#todos-Select {
+  background-color: rgb(215, 215, 215);
 }
 
 .textInput {
+  position: absolute;
+  left: 20%;
   width: 350px;
   height: 30px;
   background-color: rgb(214, 214, 214);
   margin-left: 120px;
+  font-size: 20px;
+}
+
+.send-Button {
+  position: absolute;
+  left: 90%;
 }

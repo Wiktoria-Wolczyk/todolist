@@ -1,5 +1,6 @@
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
+import { LeftSidebar } from "./Sidebar/Left/LeftSidebar.jsx";
 
 export const Tasks = () => {
   const [text, setText] = useState("");
@@ -14,7 +15,7 @@ export const Tasks = () => {
   return (
     <>
       <div
-        className="TodosList"
+        className="todosList"
         style={{
           position: "relative",
           width: "100%",
@@ -23,6 +24,7 @@ export const Tasks = () => {
         }}
       >
         <img
+          className="backgroundPicture"
           src={backgroundphoto}
           alt="burdz chalifa"
           height="100%"
@@ -36,6 +38,7 @@ export const Tasks = () => {
           }}
         />
         <div
+          className="displayTodoRectangle"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -50,6 +53,7 @@ export const Tasks = () => {
           }}
         >
           <span
+            id="fontInHeading"
             style={{
               fontSize: 45,
             }}
@@ -74,6 +78,7 @@ export const Tasks = () => {
           </ul>
 
           <div
+            className="select-And-TextInput-Rectangle"
             style={{
               position: "absolute",
               top: "93%",
@@ -86,6 +91,7 @@ export const Tasks = () => {
             }}
           >
             <label
+              id="label-NewTodo"
               style={{
                 marginLeft: 25,
                 paddingRight: 20,
@@ -96,7 +102,7 @@ export const Tasks = () => {
             </label>
             <select
               name="todos"
-              id="todos-select"
+              id="todos-Select"
               onChange={(e) => setSelectChoice(e.target.value)}
             >
               <option value="">Choose option:</option>
@@ -117,6 +123,7 @@ export const Tasks = () => {
               }}
             />
             <button
+              className="send-Button"
               onClick={() => {
                 setTaskArr([
                   ...taskArr,
