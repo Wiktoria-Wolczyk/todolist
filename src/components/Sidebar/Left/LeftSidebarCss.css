@@ -9,4 +9,9 @@
   height: 40px;
   border-radius: 10px;
   padding-left: 10px;
+  cursor: pointer;
+}
+
+.showGroup:hover {
+  background-color: rgb(176, 176, 176);
 }

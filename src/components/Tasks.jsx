@@ -61,7 +61,7 @@ export const Tasks = () => {
             textAlign: "space-between",
             zIndex: 1,
             width: "100%",
-            height: "100%",
+            height: "80%",
             marginTop: 20,
             marginLeft: 25,
             marginRight: 20,
@@ -79,15 +79,21 @@ export const Tasks = () => {
           <ul className="taskContainer">
             {taskArr.map((task) => (
               <li className="taskItem" key={task.id}>
-                {task.text}
-                <span id="choice">{task.choice}</span>
-                <i
-                  onClick={() => {
-                    setTaskArr(taskArr.filter((t) => t.id !== task.id));
-                  }}
-                  className="fa-solid fa-trash-can fa-lg"
-                  style={{ color: "#000000" }}
-                ></i>
+                <div
+                  style={{ display: "flex", width: "100%", padding: "0 20px" }}
+                >
+                  <div className="liContainer">
+                    {task.text}
+                    <span id="choice">{task.choice}</span>
+                  </div>
+                  <i
+                    onClick={() => {
+                      setTaskArr(taskArr.filter((t) => t.id !== task.id));
+                    }}
+                    className="fa-solid fa-trash-can"
+                    style={{ color: "#000000" }}
+                  ></i>
+                </div>
               </li>
             ))}
           </ul>
@@ -113,7 +119,7 @@ export const Tasks = () => {
               }}
             >
               {" "}
-              New todo
+              <i className="fa-solid fa-plus fa-lg"></i>
             </label>
             <select
               name="todos"
@@ -137,8 +143,8 @@ export const Tasks = () => {
                 fontSize: 20,
               }}
             />
-            <button
-              className="send-Button"
+            <i
+              className="fa-solid fa-chevron-right fa-lg"
               onClick={() => {
                 setTaskArr([
                   ...taskArr,
@@ -151,9 +157,7 @@ export const Tasks = () => {
                 left: "90%",
               }}
               disabled={text === "" || selectChoice === "" ? true : false}
-            >
-              Send
-            </button>
+            ></i>
           </div>
         </div>
       </div>
