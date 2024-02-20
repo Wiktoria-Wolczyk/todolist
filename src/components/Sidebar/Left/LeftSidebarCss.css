@@ -1,14 +1,15 @@
 .showGroup {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
   font-size: 20px;
   background-color: rgb(192, 192, 192);
-  width: 250px;
+  width: 220px;
   height: 40px;
   border-radius: 10px;
   padding-left: 10px;
+  padding-right: 30px;
   cursor: pointer;
 }
 

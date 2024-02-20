@@ -1,31 +1,17 @@
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
-import { LeftSidebar } from "./Sidebar/Left/LeftSidebar.jsx";
 
-const constantTasks = [
-  { id: 0, text: "jeden", choice: "home" },
-  { id: 1, text: "dwa", choice: "work" },
-  { id: 2, text: "trzy", choice: "home" },
-  { id: 3, text: "cztery", choice: "work" },
-  { id: 4, text: "pięć", choice: "home" },
-  { id: 5, text: "sześć", choice: "work" },
-  { id: 6, text: "siedem", choice: "home" },
-  { id: 7, text: "osiem", choice: "work" },
-  { id: 8, text: "dziewięć", choice: "work" },
-  { id: 9, text: "dziesięć", choice: "home" },
-];
-
-export const Tasks = () => {
+export const Tasks = ({ taskArr, setTaskArr }) => {
   const [text, setText] = useState("");
-
-  const [taskArr, setTaskArr] = useState(constantTasks);
-  console.log(1);
 
   let nextId = 0;
 
   let date = new Date();
 
   const [selectChoice, setSelectChoice] = useState("");
+
+  // console.log(taskArr.length);
+  console.log(taskArr);
 
   return (
     <>
@@ -101,14 +87,11 @@ export const Tasks = () => {
           <div
             className="select-And-TextInput-Rectangle"
             style={{
-              position: "absolute",
-              top: "93%",
-              left: "10%",
               display: "flex",
+              flexDirection: "row",
               alignItems: "center",
-              width: "80%",
+              width: "96%",
               height: "5%",
-              backgroundColor: "white",
             }}
           >
             <label
@@ -121,6 +104,16 @@ export const Tasks = () => {
               {" "}
               <i className="fa-solid fa-plus fa-lg"></i>
             </label>
+            <input
+              className="textInput"
+              type="text"
+              placeholder="Your new 'todo'"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              style={{
+                position: "absolute",
+              }}
+            />
             <select
               name="todos"
               id="todos-Select"
@@ -131,18 +124,6 @@ export const Tasks = () => {
               <option value="work">Tasks at work</option>
               <option value="shop">Shopping list</option>
             </select>
-            <input
-              className="textInput"
-              type="text"
-              placeholder="Your new 'todo'"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              style={{
-                position: "absolute",
-                left: "20%",
-                fontSize: 20,
-              }}
-            />
             <i
               className="fa-solid fa-chevron-right fa-lg"
               onClick={() => {
@@ -151,10 +132,6 @@ export const Tasks = () => {
                   { id: nextId++, text: text, choice: selectChoice },
                 ]);
                 setText("");
-              }}
-              style={{
-                position: "absolute",
-                left: "90%",
               }}
               disabled={text === "" || selectChoice === "" ? true : false}
             ></i>

@@ -1,6 +1,19 @@
 import { LeftSidebarCss } from "./LeftSidebarCss.css";
+import { useState } from "react";
 
-export const LeftSidebar = () => {
+const taskGroupList = [
+  { id: 0, icon: "fa-list-check", text: "Display all", choice: "all" },
+  { id: 1, icon: "fa-house", text: "Household duties", choice: "home" },
+  { id: 2, icon: "fa-computer", text: "Tasks at work", choice: "work" },
+  { id: 3, icon: "fa-cart-shopping", text: "Shopping list", choice: "shop" },
+];
+
+export const LeftSidebar = ({ taskArr, setTaskArr }) => {
+  const [isGrey, setIsGrey] = useState(true);
+  const [clickedId, setClickedId] = useState(taskGroupList[0].id);
+
+  console.log(taskArr);
+
   return (
     <>
       <div
@@ -28,29 +41,39 @@ export const LeftSidebar = () => {
             paddingTop: "2%",
           }}
         >
-          <div className="showGroup">
-            <i
-              class="fa-solid fa-house fa-sm"
-              style={{ color: "grey", marginRight: 10 }}
-            ></i>
-            Household duties
-          </div>
-          <div className="showGroup">
-            <i
-              class="fa-solid fa-computer fa-sm"
-              style={{ color: "grey", marginRight: 10 }}
-            ></i>
-            Tasks at work
-          </div>
-          <div className="showGroup">
-            <i
-              class="fa-solid fa-cart-shopping"
-              style={{ color: "grey", marginRight: 10 }}
-            ></i>
-            Shopping list
-          </div>
+          {taskGroupList.map((group) => (
+            <div
+              className="showGroup"
+              onClick={() => setClickedId(group.id)}
+              style={{
+                backgroundColor: clickedId === group.id ? "grey" : "darkgrey",
+              }}
+            >
+              <div>
+                <i
+                  className={`fa-solid ${group.icon} fa-sm`}
+                  style={{ color: "grey", marginRight: 10 }}
+                ></i>
+                {group.text}
+              </div>
+              <div className="sumOfElementChoices">
+                {
+                  taskArr.filter((task) => {
+                    if (group.choice === "all") {
+                      return true;
+                    } else {
+                      return group.choice === task.choice;
+                    }
+                  }).length
+                }
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
   );
 };
+
+// klikajac w dany element ma rozpoznawac jaki element kliknelam i zmieniac jego kolor
+// zeby wiedzialo ktory element zaznaczylam
