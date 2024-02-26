@@ -1,17 +1,12 @@
 import { RightSidebarCss } from "./RightSidebarCss.css";
 
-export const RightSidebar = (
-  clickedTaskChoice,
-  setClickedTaskChoice,
-  taskArr,
-  setTaskArr
-) => {
+export const RightSidebar = ({ task }) => {
   return (
     <div className="rightSidebar-Background">
-      empty
+      {task.text}
       <div className="display-Selected-Task">
         <label className="label-TypeOfTask">Type of task:</label>
-        <div className="typeofTaskDiv"></div>
+        <div className="typeofTaskDiv">{task.choice}</div>
         <label className="label-TextTodo">To do:</label>
         <div className="todoDiv">
           Lorem Ipsum is simply dummy text of the printing and typesetting

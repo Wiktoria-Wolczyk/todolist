@@ -8,10 +8,7 @@ export const Tasks = ({
   clickedTaskId,
   setClickedTaskId,
 }) => {
-  console.log(123, clickedGroup);
   const [text, setText] = useState("");
-
-  let nextId = 0;
 
   let date = new Date();
 
@@ -174,7 +171,11 @@ export const Tasks = ({
               onClick={() => {
                 setTaskArr([
                   ...taskArr,
-                  { id: nextId++, text: text, choice: selectChoice },
+                  {
+                    id: taskArr[taskArr.length - 1].id + 1,
+                    text: text,
+                    choice: selectChoice,
+                  },
                 ]);
                 setText("");
                 setSelectChoice("");

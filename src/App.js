@@ -3,7 +3,7 @@ import "./App.css";
 import { LeftSidebar } from "./components/Sidebar/Left/LeftSidebar";
 import { Tasks } from "./components/Tasks";
 import { RightSidebar } from "./components/Sidebar/Right/RightSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const constantTasks = [
   { id: 0, text: "jeden", choice: "home" },
@@ -29,9 +29,8 @@ export function App() {
   const [taskArr, setTaskArr] = useState(constantTasks);
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
   const [clickedTaskId, setClickedTaskId] = useState(0);
-  const [clickedTaskChoice, setClickedTaskChoice] = useState(
-    constantTasks[0].choice
-  );
+
+  const selectedTask = taskArr.find((el) => el.id === clickedTaskId);
 
   return (
     <div className="App">
@@ -56,12 +55,9 @@ export function App() {
           setClickedTaskId={setClickedTaskId}
         />
       </main>
-      <RightSidebar
-        taskArr={taskArr}
-        setTaskArr={setTaskArr}
-        clickedTaskChoice={clickedTaskChoice}
-        setClickedTaskChoice={setClickedTaskChoice}
-      />
+
+      {/* jakis task */}
+      <RightSidebar task={selectedTask} />
     </div>
   );
 }
