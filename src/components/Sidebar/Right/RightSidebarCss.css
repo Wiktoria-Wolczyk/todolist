@@ -1,0 +1,56 @@
+.rightSidebar-Background {
+  background-color: lightgrey;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 40px;
+}
+.display-Selected-Task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: darkgrey;
+  width: 100%;
+  height: 25%;
+  margin-top: 58px;
+}
+.label-TypeOfTask {
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.typeofTaskDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 15%;
+  background-color: lightgray;
+  font-size: 20px;
+  border-radius: 2px;
+}
+.label-TextTodo {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.todoDiv {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 88%;
+  height: 50%;
+  background-color: lightgrey;
+  font-size: 20px;
+  border-radius: 2px;
+  scroll-behavior: smooth;
+  overflow-wrap: anywhere;
+  overflow-y: auto;
+}

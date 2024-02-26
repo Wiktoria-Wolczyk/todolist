@@ -28,6 +28,10 @@ const taskGroupList = [
 export function App() {
   const [taskArr, setTaskArr] = useState(constantTasks);
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
+  const [clickedTaskId, setClickedTaskId] = useState(0);
+  const [clickedTaskChoice, setClickedTaskChoice] = useState(
+    constantTasks[0].choice
+  );
 
   return (
     <div className="App">
@@ -48,9 +52,16 @@ export function App() {
           taskArr={taskArr}
           setTaskArr={setTaskArr}
           clickedGroup={clickedGroup}
+          clickedTaskId={clickedTaskId}
+          setClickedTaskId={setClickedTaskId}
         />
       </main>
-      <RightSidebar />
+      <RightSidebar
+        taskArr={taskArr}
+        setTaskArr={setTaskArr}
+        clickedTaskChoice={clickedTaskChoice}
+        setClickedTaskChoice={setClickedTaskChoice}
+      />
     </div>
   );
 }

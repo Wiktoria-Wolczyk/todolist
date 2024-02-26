@@ -1,7 +1,13 @@
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
 
-export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
+export const Tasks = ({
+  taskArr,
+  setTaskArr,
+  clickedGroup,
+  clickedTaskId,
+  setClickedTaskId,
+}) => {
   console.log(123, clickedGroup);
   const [text, setText] = useState("");
 
@@ -10,6 +16,7 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
   let date = new Date();
 
   const [selectChoice, setSelectChoice] = useState("");
+  // const [colorOfTask, setColorOfTask] = useState(true);
 
   // console.log(taskArr.length);
   console.log(taskArr);
@@ -73,7 +80,15 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
                 }
               })
               .map((task, index) => (
-                <li className="taskItem" key={task.id}>
+                <li
+                  className="taskItem"
+                  key={task.id}
+                  onClick={() => setClickedTaskId(task.id)}
+                  style={{
+                    backgroundColor:
+                      clickedTaskId === task.id ? "darkgrey" : "white",
+                  }}
+                >
                   <div
                     style={{
                       display: "flex",
@@ -90,7 +105,9 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
                         setTaskArr(taskArr.filter((t) => t.id !== task.id));
                       }}
                       className="fa-solid fa-trash-can"
-                      style={{ color: "#000000" }}
+                      style={{
+                        color: "#424242",
+                      }}
                     ></i>
                   </div>
                 </li>
@@ -103,7 +120,7 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              width: "96%",
+              width: "95%",
               height: "5%",
             }}
           >
@@ -127,12 +144,27 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
                 position: "absolute",
               }}
             />
-            <select
-              name="todos"
-              id="todos-Select"
-              onChange={(e) => setSelectChoice(e.target.value)}
+            <label
+              value=""
+              className="label-ChooseOption"
+              style={{
+                position: "absolute",
+                left: "74%",
+                bottom: "65%",
+                color: "white",
+                fontSize: 15,
+              }}
             >
-              <option value="">Choose option:</option>
+              Choose option:
+            </label>
+            <select
+              className="todos"
+              id="todos-Select"
+              value={selectChoice}
+              onChange={(e) => setSelectChoice(e.target.value)}
+              style={{ position: "absolute", bottom: "20%" }}
+            >
+              <option value="">---select---</option>
               <option value="home">Household duties</option>
               <option value="work">Tasks at work</option>
               <option value="shop">Shopping list</option>
@@ -145,8 +177,12 @@ export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
                   { id: nextId++, text: text, choice: selectChoice },
                 ]);
                 setText("");
+                setSelectChoice("");
               }}
-              disabled={text === "" || selectChoice === "" ? true : false}
+              style={{
+                pointerEvents:
+                  text === "" || selectChoice === "" ? "none" : "auto",
+              }}
             ></i>
           </div>
         </div>
