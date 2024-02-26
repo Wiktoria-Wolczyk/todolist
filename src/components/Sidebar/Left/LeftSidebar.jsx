@@ -1,19 +1,12 @@
 import { LeftSidebarCss } from "./LeftSidebarCss.css";
 import { useState } from "react";
 
-const taskGroupList = [
-  { id: 0, icon: "fa-list-check", text: "Display all", choice: "all" },
-  { id: 1, icon: "fa-house", text: "Household duties", choice: "home" },
-  { id: 2, icon: "fa-computer", text: "Tasks at work", choice: "work" },
-  { id: 3, icon: "fa-cart-shopping", text: "Shopping list", choice: "shop" },
-];
-
-export const LeftSidebar = ({ taskArr, setTaskArr }) => {
-  const [isGrey, setIsGrey] = useState(true);
-  const [clickedId, setClickedId] = useState(taskGroupList[0].id);
-
-  console.log(taskArr);
-
+export const LeftSidebar = ({
+  taskArr,
+  taskGroupList,
+  clickedGroup,
+  setClickedGroup,
+}) => {
   return (
     <>
       <div
@@ -44,9 +37,10 @@ export const LeftSidebar = ({ taskArr, setTaskArr }) => {
           {taskGroupList.map((group) => (
             <div
               className="showGroup"
-              onClick={() => setClickedId(group.id)}
+              onClick={() => setClickedGroup(group.choice)}
               style={{
-                backgroundColor: clickedId === group.id ? "grey" : "darkgrey",
+                backgroundColor:
+                  clickedGroup === group.choice ? "grey" : "darkgrey",
               }}
             >
               <div>

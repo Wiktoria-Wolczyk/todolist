@@ -1,7 +1,8 @@
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
 
-export const Tasks = ({ taskArr, setTaskArr }) => {
+export const Tasks = ({ taskArr, setTaskArr, clickedGroup }) => {
+  console.log(123, clickedGroup);
   const [text, setText] = useState("");
 
   let nextId = 0;
@@ -63,25 +64,37 @@ export const Tasks = ({ taskArr, setTaskArr }) => {
           </span>
           {date.toDateString()}
           <ul className="taskContainer">
-            {taskArr.map((task) => (
-              <li className="taskItem" key={task.id}>
-                <div
-                  style={{ display: "flex", width: "100%", padding: "0 20px" }}
-                >
-                  <div className="liContainer">
-                    {task.text}
-                    <span id="choice">{task.choice}</span>
-                  </div>
-                  <i
-                    onClick={() => {
-                      setTaskArr(taskArr.filter((t) => t.id !== task.id));
+            {taskArr
+              .filter((task) => {
+                if (clickedGroup === "all") {
+                  return true;
+                } else {
+                  return task.choice === clickedGroup;
+                }
+              })
+              .map((task, index) => (
+                <li className="taskItem" key={task.id}>
+                  <div
+                    style={{
+                      display: "flex",
+                      width: "100%",
+                      padding: "0 20px",
                     }}
-                    className="fa-solid fa-trash-can"
-                    style={{ color: "#000000" }}
-                  ></i>
-                </div>
-              </li>
-            ))}
+                  >
+                    <div className="liContainer">
+                      {index + 1}. {task.text}
+                      <span id="choice">{task.choice}</span>
+                    </div>
+                    <i
+                      onClick={() => {
+                        setTaskArr(taskArr.filter((t) => t.id !== task.id));
+                      }}
+                      className="fa-solid fa-trash-can"
+                      style={{ color: "#000000" }}
+                    ></i>
+                  </div>
+                </li>
+              ))}
           </ul>
 
           <div
