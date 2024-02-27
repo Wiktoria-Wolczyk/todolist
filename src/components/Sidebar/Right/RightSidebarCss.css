@@ -54,3 +54,22 @@
   overflow-wrap: anywhere;
   overflow-y: auto;
 }
+.buttonsPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 212%;
+  width: 100%;
+  height: 5%;
+  background-color: lightgrey;
+}
+.button-Save {
+  width: 100px;
+  height: 30px;
+  margin-left: 20px;
+}
+.button-Close {
+  width: 100px;
+  height: 30px;
+  margin-right: 20px;
+}

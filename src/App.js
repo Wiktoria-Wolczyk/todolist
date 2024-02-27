@@ -6,16 +6,16 @@ import { RightSidebar } from "./components/Sidebar/Right/RightSidebar";
 import { useEffect, useState } from "react";
 
 const constantTasks = [
-  { id: 0, text: "jeden", choice: "home" },
-  { id: 1, text: "dwa", choice: "work" },
-  { id: 2, text: "trzy", choice: "home" },
-  { id: 3, text: "cztery", choice: "work" },
-  { id: 4, text: "pięć", choice: "home" },
-  { id: 5, text: "sześć", choice: "work" },
-  { id: 6, text: "siedem", choice: "home" },
-  { id: 7, text: "osiem", choice: "work" },
-  { id: 8, text: "dziewięć", choice: "work" },
-  { id: 9, text: "dziesięć", choice: "home" },
+  { id: 0, text: "jeden", choice: "home", description: "taki opis1" },
+  { id: 1, text: "dwa", choice: "work", description: "taki opis2" },
+  { id: 2, text: "trzy", choice: "home", description: "taki opis3" },
+  { id: 3, text: "cztery", choice: "work", description: "taki opis4" },
+  { id: 4, text: "pięć", choice: "home", description: "taki opis5" },
+  { id: 5, text: "sześć", choice: "work", description: "taki opis6" },
+  { id: 6, text: "siedem", choice: "home", description: "taki opis7" },
+  { id: 7, text: "osiem", choice: "work", description: "taki opis8" },
+  { id: 8, text: "dziewięć", choice: "work", description: "taki opis9" },
+  { id: 9, text: "dziesięć", choice: "home", description: "taki opis10" },
 ];
 
 const taskGroupList = [
@@ -28,7 +28,7 @@ const taskGroupList = [
 export function App() {
   const [taskArr, setTaskArr] = useState(constantTasks);
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
-  const [clickedTaskId, setClickedTaskId] = useState(0);
+  const [clickedTaskId, setClickedTaskId] = useState(null);
 
   const selectedTask = taskArr.find((el) => el.id === clickedTaskId);
 
