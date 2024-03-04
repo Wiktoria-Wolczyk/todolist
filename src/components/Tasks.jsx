@@ -16,7 +16,6 @@ export const Tasks = ({
   // const [colorOfTask, setColorOfTask] = useState(true);
 
   // console.log(taskArr.length);
-  console.log(taskArr);
 
   return (
     <>

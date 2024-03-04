@@ -57,7 +57,12 @@ export function App() {
       </main>
 
       {/* jakis task */}
-      <RightSidebar task={selectedTask} />
+      <RightSidebar
+        task={selectedTask}
+        clickedTaskId={clickedTaskId}
+        setClickedTaskId={setClickedTaskId}
+        taskArr={taskArr}
+      />
     </div>
   );
 }
