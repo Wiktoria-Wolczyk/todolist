@@ -26,9 +26,15 @@ const taskGroupList = [
 ];
 
 export function App() {
-  const [taskArr, setTaskArr] = useState(constantTasks);
+  const initialTasks =
+    JSON.parse(localStorage.getItem("tasks")) || constantTasks || [];
+  const [taskArr, setTaskArr] = useState(initialTasks);
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
   const [clickedTaskId, setClickedTaskId] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(taskArr));
+  }, [taskArr]);
 
   const selectedTask = taskArr.find((el) => el.id === clickedTaskId);
 
