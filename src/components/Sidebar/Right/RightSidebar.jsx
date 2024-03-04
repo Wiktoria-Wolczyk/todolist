@@ -6,15 +6,14 @@ export const RightSidebar = ({
   setClickedTaskId,
   clickedTaskId,
   taskArr,
+  handleTextChange,
+  handleSaveChanges,
 }) => {
-  const [taskDescription, setTaskDescription] = useState(task?.description);
+  const [taskDescription, setTaskDescription] = useState("");
 
   useEffect(() => {
-    console.log("rerender", taskDescription);
-    if (task?.description && !taskDescription) {
-      setTaskDescription(task.description);
-    }
-  }, [taskDescription, task]);
+    setTaskDescription(task?.description || "");
+  }, [task?.description]);
 
   if (!task) {
     return <></>;
@@ -28,21 +27,22 @@ export const RightSidebar = ({
         <label className="label-TextTodo">To do:</label>
         <textarea
           className="todoDiv"
-          value={taskDescription}
-          onChange={(e) => setTaskDescription(e.target.value)}
+          value={task.description}
+          onChange={(e) => handleTextChange(task.id, e.target.value)}
         />
       </div>
       <div className="buttonsPlaceholder">
         <button
           className="button-Save"
-          onClick={() => {
-            const index = taskArr.findIndex((object) => {
-              return object.id === clickedTaskId;
-            });
-            if (index !== -1) {
-              taskArr[index].description = taskDescription;
-            }
-          }}
+          onClick={
+            handleSaveChanges
+            // const index = taskArr.findIndex((object) => {
+            //   return object.id === clickedTaskId;
+            // });
+            // if (index !== -1) {
+            //   taskArr[index].description = taskDescription;
+            // }
+          }
         >
           Save
         </button>

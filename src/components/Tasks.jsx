@@ -7,6 +7,8 @@ export const Tasks = ({
   clickedGroup,
   clickedTaskId,
   setClickedTaskId,
+  handleCheckboxClick,
+  addTask,
 }) => {
   const [text, setText] = useState("");
 
@@ -75,39 +77,64 @@ export const Tasks = ({
                   return task.choice === clickedGroup;
                 }
               })
-              .map((task, index) => (
-                <li
-                  className="taskItem"
-                  key={task.id}
-                  onClick={() => setClickedTaskId(task.id)}
-                  style={{
-                    backgroundColor:
-                      clickedTaskId === task.id ? "darkgrey" : "white",
-                  }}
-                >
-                  <div
+              .map((task, index) => {
+                let date =
+                  task.createdAt && new Date(task.createdAt).toISOString();
+
+                if (date) {
+                  date = date.replace("T", " ").substring(0, 19);
+                  // const index = date.indexOf("T");
+                  // const _arr = [...date];
+                  // _arr[index] = " ";
+                  // const str = _arr.join("");
+                }
+                return (
+                  <li
+                    className="taskItem"
+                    key={task.id}
+                    onClick={() => setClickedTaskId(task.id)}
                     style={{
-                      display: "flex",
-                      width: "100%",
-                      padding: "0 20px",
+                      backgroundColor:
+                        clickedTaskId === task.id ? "darkgrey" : "white",
                     }}
                   >
-                    <div className="liContainer">
-                      {index + 1}. {task.text}
-                      <span id="choice">{task.choice}</span>
-                    </div>
-                    <i
-                      onClick={() => {
-                        setTaskArr(taskArr.filter((t) => t.id !== task.id));
-                      }}
-                      className="fa-solid fa-trash-can"
+                    <input
+                      type="checkbox"
+                      checked={task.complete}
+                      onChange={() => handleCheckboxClick(task.id)}
+                    ></input>
+                    <div
                       style={{
-                        color: "#424242",
+                        display: "flex",
+                        width: "100%",
+                        padding: "0 20px",
                       }}
-                    ></i>
-                  </div>
-                </li>
-              ))}
+                    >
+                      <div
+                        className="liContainer"
+                        style={{
+                          textDecoration: task.complete
+                            ? "line-through"
+                            : "none",
+                        }}
+                      >
+                        {index + 1}. {task.text}
+                        -Created at: {date}
+                        <span id="choice">{task.choice}</span>
+                      </div>
+                      <i
+                        onClick={() => {
+                          setTaskArr(taskArr.filter((t) => t.id !== task.id));
+                        }}
+                        className="fa-solid fa-trash-can"
+                        style={{
+                          color: "#424242",
+                        }}
+                      ></i>
+                    </div>
+                  </li>
+                );
+              })}
           </ul>
 
           <div
@@ -174,6 +201,7 @@ export const Tasks = ({
                     id: taskArr[taskArr.length - 1].id + 1,
                     text: text,
                     choice: selectChoice,
+                    createdAt: new Date(),
                   },
                 ]);
                 setText("");

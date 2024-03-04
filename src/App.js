@@ -6,16 +6,86 @@ import { RightSidebar } from "./components/Sidebar/Right/RightSidebar";
 import { useEffect, useState } from "react";
 
 const constantTasks = [
-  { id: 0, text: "jeden", choice: "home", description: "taki opis1" },
-  { id: 1, text: "dwa", choice: "work", description: "taki opis2" },
-  { id: 2, text: "trzy", choice: "home", description: "taki opis3" },
-  { id: 3, text: "cztery", choice: "work", description: "taki opis4" },
-  { id: 4, text: "pięć", choice: "home", description: "taki opis5" },
-  { id: 5, text: "sześć", choice: "work", description: "taki opis6" },
-  { id: 6, text: "siedem", choice: "home", description: "taki opis7" },
-  { id: 7, text: "osiem", choice: "work", description: "taki opis8" },
-  { id: 8, text: "dziewięć", choice: "work", description: "taki opis9" },
-  { id: 9, text: "dziesięć", choice: "home", description: "taki opis10" },
+  {
+    id: 0,
+    text: "jeden",
+    choice: "home",
+    description: "taki opis1",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 1,
+    text: "dwa",
+    choice: "work",
+    description: "taki opis2",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 2,
+    text: "trzy",
+    choice: "home",
+    description: "taki opis3",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 3,
+    text: "cztery",
+    choice: "work",
+    description: "taki opis4",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 4,
+    text: "pięć",
+    choice: "home",
+    description: "taki opis5",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 5,
+    text: "sześć",
+    choice: "work",
+    description: "taki opis6",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 6,
+    text: "siedem",
+    choice: "home",
+    description: "taki opis7",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 7,
+    text: "osiem",
+    choice: "work",
+    description: "taki opis8",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 8,
+    text: "dziewięć",
+    choice: "work",
+    description: "taki opis9",
+    complete: false,
+    createdAt: new Date(),
+  },
+  {
+    id: 9,
+    text: "dziesięć",
+    choice: "home",
+    description: "taki opis10",
+    complete: false,
+    createdAt: new Date(),
+  },
 ];
 
 const taskGroupList = [
@@ -31,12 +101,38 @@ export function App() {
   const [taskArr, setTaskArr] = useState(initialTasks);
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
   const [clickedTaskId, setClickedTaskId] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskArr));
   }, [taskArr]);
 
   const selectedTask = taskArr.find((el) => el.id === clickedTaskId);
+
+  const handleCheckboxClick = (taskId) => {
+    const completedTasks = taskArr.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, complete: !task.complete };
+      }
+      return task;
+    });
+    setTaskArr(completedTasks);
+  };
+
+  const handleTextChange = (taskId, newText) => {
+    const updatedText = taskArr.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, description: newText };
+      } else {
+        return task;
+      }
+    });
+    setTaskArr(updatedText);
+  };
+
+  const handleSaveChanges = () => {
+    console.log("Tasks with changes:", taskArr);
+  };
 
   return (
     <div className="App">
@@ -59,6 +155,7 @@ export function App() {
           clickedGroup={clickedGroup}
           clickedTaskId={clickedTaskId}
           setClickedTaskId={setClickedTaskId}
+          handleCheckboxClick={handleCheckboxClick}
         />
       </main>
 
@@ -68,6 +165,8 @@ export function App() {
         clickedTaskId={clickedTaskId}
         setClickedTaskId={setClickedTaskId}
         taskArr={taskArr}
+        handleTextChange={handleTextChange}
+        handleSaveChanges={handleSaveChanges}
       />
     </div>
   );
