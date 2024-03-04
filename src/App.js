@@ -112,7 +112,12 @@ export function App() {
   const handleCheckboxClick = (taskId) => {
     const completedTasks = taskArr.map((task) => {
       if (task.id === taskId) {
-        return { ...task, complete: !task.complete };
+        const newBooleanValue = !task.complete;
+        return {
+          ...task,
+          complete: newBooleanValue,
+          completedAt: newBooleanValue ? new Date() : null,
+        };
       }
       return task;
     });

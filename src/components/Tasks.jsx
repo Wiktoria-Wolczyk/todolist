@@ -11,13 +11,16 @@ export const Tasks = ({
   addTask,
 }) => {
   const [text, setText] = useState("");
-
-  let date = new Date();
-
   const [selectChoice, setSelectChoice] = useState("");
-  // const [colorOfTask, setColorOfTask] = useState(true);
 
-  // console.log(taskArr.length);
+  const formatDate = (date) => {
+    const formattedDate = new Date(date)
+      .toISOString()
+      .replace("T", " ")
+      .substring(0, 19);
+
+    return formattedDate;
+  };
 
   return (
     <>
@@ -67,7 +70,7 @@ export const Tasks = ({
           >
             Today's tasks
           </span>
-          {date.toDateString()}
+          {new Date().toDateString()}
           <ul className="taskContainer">
             {taskArr
               .filter((task) => {
@@ -78,22 +81,15 @@ export const Tasks = ({
                 }
               })
               .map((task, index) => {
-                let date =
-                  task.createdAt && new Date(task.createdAt).toISOString();
-
-                if (date) {
-                  date = date.replace("T", " ").substring(0, 19);
-                  // const index = date.indexOf("T");
-                  // const _arr = [...date];
-                  // _arr[index] = " ";
-                  // const str = _arr.join("");
-                }
                 return (
                   <li
                     className="taskItem"
                     key={task.id}
                     onClick={() => setClickedTaskId(task.id)}
                     style={{
+                      display: "flex",
+                      alignItems: "center",
+                      height: 60,
                       backgroundColor:
                         clickedTaskId === task.id ? "darkgrey" : "white",
                     }}
@@ -102,10 +98,17 @@ export const Tasks = ({
                       type="checkbox"
                       checked={task.complete}
                       onChange={() => handleCheckboxClick(task.id)}
+                      style={{
+                        marginLeft: 20,
+                        marginRight: 0,
+                        width: 20,
+                        height: 20,
+                      }}
                     ></input>
                     <div
                       style={{
                         display: "flex",
+                        alignItems: "center",
                         width: "100%",
                         padding: "0 20px",
                       }}
@@ -113,13 +116,48 @@ export const Tasks = ({
                       <div
                         className="liContainer"
                         style={{
-                          textDecoration: task.complete
-                            ? "line-through"
-                            : "none",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
                         }}
                       >
-                        {index + 1}. {task.text}
-                        -Created at: {date}
+                        <div
+                          className="IndexTextAndDateDiv"
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
+                          }}
+                        >
+                          <span className="index" style={{ marginRight: 20 }}>
+                            {index + 1}.
+                          </span>
+                          <div
+                            className="TextAndDateDiv"
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "flex-start",
+                            }}
+                          >
+                            <span
+                              style={{
+                                textDecoration: task.complete
+                                  ? "line-through"
+                                  : "none",
+                              }}
+                            >
+                              {task.text}
+                            </span>
+                            <span style={{ fontSize: 12 }}>
+                              {task.complete
+                                ? `Completed at: ${formatDate(
+                                    task?.completedAt
+                                  )}`
+                                : formatDate(task.createdAt)}
+                            </span>
+                          </div>
+                        </div>
                         <span id="choice">{task.choice}</span>
                       </div>
                       <i
