@@ -9,6 +9,12 @@ export const Tasks = ({
   setClickedTaskId,
   handleCheckboxClick,
   addTask,
+  setInputClicked,
+  inputClicked,
+  selectTaskOption,
+  setSelectTaskOption,
+  taskCompleted,
+  setTaskCompleted,
 }) => {
   const [text, setText] = useState("");
   const [selectChoice, setSelectChoice] = useState("");
@@ -52,6 +58,7 @@ export const Tasks = ({
           style={{
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
             alignItems: "flex-start",
             textAlign: "space-between",
             zIndex: 1,
@@ -62,16 +69,42 @@ export const Tasks = ({
             marginRight: 20,
           }}
         >
-          <span
-            id="fontInHeading"
+          <div
             style={{
-              fontSize: 45,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
             }}
           >
-            Today's tasks
+            <span
+              id="fontInHeading"
+              style={{
+                fontSize: 45,
+              }}
+            >
+              Today's tasks
+            </span>
+            {new Date().toDateString()}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <span style={{ fontSize: 25, marginTop: 10, marginBottom: 10 }}>
+              Completed:
+            </span>
+            <div
+              className="completedTaskContainer"
+              style={{ backgroundColor: "beige", height: 300, width: 913 }}
+            ></div>
+          </div>
+          <span style={{ fontSize: 25, marginTop: 20, marginBottom: 0 }}>
+            To do:
           </span>
-          {new Date().toDateString()}
-          <ul className="taskContainer">
+          <ul className="taskContainer" style={{ marginTop: 0 }}>
             {taskArr
               .filter((task) => {
                 if (clickedGroup === "all") {
@@ -81,11 +114,18 @@ export const Tasks = ({
                 }
               })
               .map((task, index) => {
+                if (task.complete === true) {
+                  return <></>;
+                }
                 return (
                   <li
                     className="taskItem"
                     key={task.id}
-                    onClick={() => setClickedTaskId(task.id)}
+                    onClick={() => {
+                      setClickedTaskId(task.id);
+                      setSelectTaskOption(task.choice);
+                      inputClicked && setInputClicked(!inputClicked);
+                    }}
                     style={{
                       display: "flex",
                       alignItems: "center",
@@ -105,6 +145,7 @@ export const Tasks = ({
                         height: 20,
                       }}
                     ></input>
+
                     <div
                       style={{
                         display: "flex",

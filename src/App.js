@@ -102,6 +102,11 @@ export function App() {
   const [clickedGroup, setClickedGroup] = useState(taskGroupList[0].choice);
   const [clickedTaskId, setClickedTaskId] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
+  const [inputClicked, setInputClicked] = useState(false);
+  const [selectTaskOption, setSelectTaskOption] = useState(
+    constantTasks[0].choice
+  );
+  const [taskCompleted, setTaskCompleted] = useState(true);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskArr));
@@ -135,8 +140,27 @@ export function App() {
     setTaskArr(updatedText);
   };
 
-  const handleSaveChanges = () => {
-    console.log("Tasks with changes:", taskArr);
+  const handleInputChange = (taskId, newText) => {
+    const updatedInput = taskArr.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, text: newText };
+      } else {
+        return task;
+      }
+    });
+    setTaskArr(updatedInput);
+  };
+
+  const handleSaveChanges = (newTaskDataId, newTaskData) => {
+    const newArr = taskArr.map((task) => {
+      if (task.id === newTaskDataId) {
+        return { ...task, ...newTaskData };
+      } else {
+        return task;
+      }
+    });
+
+    setTaskArr(newArr);
   };
 
   return (
@@ -161,6 +185,12 @@ export function App() {
           clickedTaskId={clickedTaskId}
           setClickedTaskId={setClickedTaskId}
           handleCheckboxClick={handleCheckboxClick}
+          setInputClicked={setInputClicked}
+          inputClicked={inputClicked}
+          selectTaskOption={selectTaskOption}
+          setSelectTaskOption={setSelectTaskOption}
+          taskCompleted={taskCompleted}
+          setTaskCompleted={setTaskCompleted}
         />
       </main>
 
@@ -172,6 +202,11 @@ export function App() {
         taskArr={taskArr}
         handleTextChange={handleTextChange}
         handleSaveChanges={handleSaveChanges}
+        handleInputChange={handleInputChange}
+        setInputClicked={setInputClicked}
+        inputClicked={inputClicked}
+        selectTaskOption={selectTaskOption}
+        setSelectTaskOption={setSelectTaskOption}
       />
     </div>
   );
