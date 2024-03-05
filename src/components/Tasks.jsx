@@ -58,7 +58,6 @@ export const Tasks = ({
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
             alignItems: "flex-start",
             textAlign: "space-between",
             zIndex: 1,
@@ -99,7 +98,123 @@ export const Tasks = ({
             <div
               className="completedTaskContainer"
               style={{ backgroundColor: "beige", height: 300, width: 913 }}
-            ></div>
+            >
+              <ul className="taskContainer" style={{ marginTop: 0 }}>
+                {taskArr
+                  .filter((task) => {
+                    if (task.complete === true) {
+                      if (clickedGroup === "all") {
+                        return true;
+                      } else {
+                        return task.choice === clickedGroup;
+                      }
+                    }
+                  })
+                  .map((task, index) => {
+                    return (
+                      <li
+                        className="taskItem"
+                        key={task.id}
+                        onClick={() => {
+                          setClickedTaskId(task.id);
+                          setSelectTaskOption(task.choice);
+                          inputClicked && setInputClicked(!inputClicked);
+                        }}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          height: 60,
+                          backgroundColor:
+                            clickedTaskId === task.id ? "darkgrey" : "white",
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={task.complete}
+                          onChange={() => handleCheckboxClick(task.id)}
+                          style={{
+                            marginLeft: 20,
+                            marginRight: 0,
+                            width: 20,
+                            height: 20,
+                          }}
+                        ></input>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            width: "100%",
+                            padding: "0 20px",
+                          }}
+                        >
+                          <div
+                            className="liContainer"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            <div
+                              className="IndexTextAndDateDiv"
+                              style={{
+                                display: "flex",
+                                flexDirection: "row",
+                                alignItems: "center",
+                              }}
+                            >
+                              <span
+                                className="index"
+                                style={{ marginRight: 20 }}
+                              >
+                                {index + 1}.
+                              </span>
+                              <div
+                                className="TextAndDateDiv"
+                                style={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  alignItems: "flex-start",
+                                }}
+                              >
+                                <span
+                                  style={{
+                                    textDecoration: task.complete
+                                      ? "line-through"
+                                      : "none",
+                                  }}
+                                >
+                                  {task.text}
+                                </span>
+                                <span style={{ fontSize: 12 }}>
+                                  {task.complete
+                                    ? `Completed at: ${formatDate(
+                                        task?.completedAt
+                                      )}`
+                                    : formatDate(task.createdAt)}
+                                </span>
+                              </div>
+                            </div>
+                            <span id="choice">{task.choice}</span>
+                          </div>
+                          <i
+                            onClick={() => {
+                              setTaskArr(
+                                taskArr.filter((t) => t.id !== task.id)
+                              );
+                            }}
+                            className="fa-solid fa-trash-can"
+                            style={{
+                              color: "#424242",
+                            }}
+                          ></i>
+                        </div>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
           </div>
           <span style={{ fontSize: 25, marginTop: 20, marginBottom: 0 }}>
             To do:
