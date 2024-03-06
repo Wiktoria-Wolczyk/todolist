@@ -175,7 +175,7 @@ export function App() {
       <main
         style={{
           height: "100%",
-          width: "60%",
+          width: "100%",
         }}
       >
         <Tasks

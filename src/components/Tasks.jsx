@@ -62,7 +62,7 @@ export const Tasks = ({
             textAlign: "space-between",
             zIndex: 1,
             width: "100%",
-            height: "80%",
+            height: "100%",
             marginTop: 20,
             marginLeft: 25,
             marginRight: 20,
@@ -90,6 +90,7 @@ export const Tasks = ({
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-start",
+              width: "100%",
             }}
           >
             <span style={{ fontSize: 25, marginTop: 10, marginBottom: 10 }}>
@@ -97,7 +98,11 @@ export const Tasks = ({
             </span>
             <div
               className="completedTaskContainer"
-              style={{ backgroundColor: "beige", width: 913 }}
+              style={{
+                backgroundColor: "beige",
+                width: "100%",
+                height: "100%",
+              }}
             >
               <ul className="taskContainer" style={{ marginTop: 0 }}>
                 {taskArr
@@ -131,6 +136,9 @@ export const Tasks = ({
                         <input
                           type="checkbox"
                           checked={task.complete}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                           onChange={() => handleCheckboxClick(task.id)}
                           style={{
                             marginLeft: 20,
@@ -252,7 +260,12 @@ export const Tasks = ({
                     <input
                       type="checkbox"
                       checked={task.complete}
-                      onChange={() => handleCheckboxClick(task.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onChange={(e) => {
+                        handleCheckboxClick(task.id);
+                      }}
                       style={{
                         marginLeft: 20,
                         marginRight: 0,
@@ -337,7 +350,7 @@ export const Tasks = ({
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              width: "95%",
+              width: "100%",
               height: "5%",
             }}
           >
