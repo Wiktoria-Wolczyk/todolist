@@ -350,7 +350,7 @@ export const Tasks = ({
               display: "flex",
               flexDirection: "row",
               alignItems: "center",
-              width: "100%",
+              width: "90%",
               height: "5%",
             }}
           >
