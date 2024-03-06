@@ -1,5 +1,6 @@
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
+import "./Tasks.css";
 
 export const Tasks = ({
   taskArr,
@@ -30,81 +31,21 @@ export const Tasks = ({
 
   return (
     <>
-      <div
-        className="todosList"
-        style={{
-          position: "relative",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-        }}
-      >
+      <div className="todosList">
         <img
           className="backgroundPicture"
           src={backgroundphoto}
           alt="burdz chalifa"
-          height="100%"
-          width="100%"
-          style={{
-            position: "absolute",
-            width: "100%",
-            height: "100%",
-            zIndex: 0,
-            filter: "blur(3px)",
-          }}
         />
-        <div
-          className="displayTodoRectangle"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            textAlign: "space-between",
-            zIndex: 1,
-            width: "100%",
-            height: "100%",
-            marginTop: 20,
-            marginLeft: 25,
-            marginRight: 20,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-            }}
-          >
-            <span
-              id="fontInHeading"
-              style={{
-                fontSize: 45,
-              }}
-            >
-              Today's tasks
-            </span>
+        <div className="displayTodoRectangle">
+          <div className="headingDiv">
+            <span id="fontInHeading">Today's tasks</span>
             {new Date().toDateString()}
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              width: "100%",
-            }}
-          >
-            <span style={{ fontSize: 25, marginTop: 10, marginBottom: 10 }}>
-              Completed:
-            </span>
-            <div
-              className="completedTaskContainer"
-              style={{
-                backgroundColor: "beige",
-                width: "100%",
-                height: "100%",
-              }}
-            >
-              <ul className="taskContainer" style={{ marginTop: 0 }}>
+          <div className="completedDiv">
+            <span className="completedSpan">Completed:</span>
+            <div className="completedTaskContainer">
+              <ul className="taskContainer">
                 {taskArr
                   .filter((task) => {
                     if (task.complete === true) {
@@ -126,67 +67,27 @@ export const Tasks = ({
                           inputClicked && setInputClicked(!inputClicked);
                         }}
                         style={{
-                          display: "flex",
-                          alignItems: "center",
-                          height: 60,
                           backgroundColor:
                             clickedTaskId === task.id ? "darkgrey" : "white",
                         }}
                       >
                         <input
+                          className="checkboxItem"
                           type="checkbox"
                           checked={task.complete}
                           onClick={(e) => {
                             e.stopPropagation();
                           }}
                           onChange={() => handleCheckboxClick(task.id)}
-                          style={{
-                            marginLeft: 20,
-                            marginRight: 0,
-                            width: 20,
-                            height: 20,
-                          }}
                         ></input>
 
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            width: "100%",
-                            padding: "0 20px",
-                          }}
-                        >
-                          <div
-                            className="liContainer"
-                            style={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "space-between",
-                            }}
-                          >
-                            <div
-                              className="IndexTextAndDateDiv"
-                              style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                alignItems: "center",
-                              }}
-                            >
-                              <span
-                                className="index"
-                                style={{ marginRight: 20 }}
-                              >
-                                {index + 1}.
-                              </span>
-                              <div
-                                className="TextAndDateDiv"
-                                style={{
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  alignItems: "flex-start",
-                                }}
-                              >
+                        <div className="parentLiContainer">
+                          <div className="liContainer">
+                            <div className="IndexTextAndDateDiv">
+                              <span className="index">{index + 1}.</span>
+                              <div className="TextAndDateDiv">
                                 <span
+                                  className="textSpan"
                                   style={{
                                     textDecoration: task.complete
                                       ? "line-through"
@@ -195,7 +96,7 @@ export const Tasks = ({
                                 >
                                   {task.text}
                                 </span>
-                                <span style={{ fontSize: 12 }}>
+                                <span className="dateSpan">
                                   {task.complete
                                     ? `Completed at: ${formatDate(
                                         task?.completedAt
@@ -213,9 +114,6 @@ export const Tasks = ({
                               );
                             }}
                             className="fa-solid fa-trash-can"
-                            style={{
-                              color: "#424242",
-                            }}
                           ></i>
                         </div>
                       </li>
@@ -224,10 +122,8 @@ export const Tasks = ({
               </ul>
             </div>
           </div>
-          <span style={{ fontSize: 25, marginTop: 20, marginBottom: 0 }}>
-            To do:
-          </span>
-          <ul className="taskContainer" style={{ marginTop: 0 }}>
+          <span className="todoSpan">To do:</span>
+          <ul className="taskContainer">
             {taskArr
               .filter((task) => {
                 if (clickedGroup === "all") {
@@ -249,15 +145,9 @@ export const Tasks = ({
                       setSelectTaskOption(task.choice);
                       inputClicked && setInputClicked(!inputClicked);
                     }}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      height: 60,
-                      backgroundColor:
-                        clickedTaskId === task.id ? "darkgrey" : "white",
-                    }}
                   >
                     <input
+                      className="checkboxItem"
                       type="checkbox"
                       checked={task.complete}
                       onClick={(e) => {
@@ -266,49 +156,13 @@ export const Tasks = ({
                       onChange={(e) => {
                         handleCheckboxClick(task.id);
                       }}
-                      style={{
-                        marginLeft: 20,
-                        marginRight: 0,
-                        width: 20,
-                        height: 20,
-                      }}
                     ></input>
 
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        width: "100%",
-                        padding: "0 20px",
-                      }}
-                    >
-                      <div
-                        className="liContainer"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div
-                          className="IndexTextAndDateDiv"
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                          }}
-                        >
-                          <span className="index" style={{ marginRight: 20 }}>
-                            {index + 1}.
-                          </span>
-                          <div
-                            className="TextAndDateDiv"
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "flex-start",
-                            }}
-                          >
+                    <div className="parentLiContainer">
+                      <div className="liContainer">
+                        <div className="IndexTextAndDateDiv">
+                          <span className="index">{index + 1}.</span>
+                          <div className="TextAndDateDiv">
                             <span
                               style={{
                                 textDecoration: task.complete
@@ -318,7 +172,7 @@ export const Tasks = ({
                             >
                               {task.text}
                             </span>
-                            <span style={{ fontSize: 12 }}>
+                            <span className="dateSpan">
                               {task.complete
                                 ? `Completed at: ${formatDate(
                                     task?.completedAt
@@ -334,9 +188,6 @@ export const Tasks = ({
                           setTaskArr(taskArr.filter((t) => t.id !== task.id));
                         }}
                         className="fa-solid fa-trash-can"
-                        style={{
-                          color: "#424242",
-                        }}
                       ></i>
                     </div>
                   </li>
@@ -344,23 +195,8 @@ export const Tasks = ({
               })}
           </ul>
 
-          <div
-            className="select-And-TextInput-Rectangle"
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              width: "90%",
-              height: "5%",
-            }}
-          >
-            <label
-              id="label-NewTodo"
-              style={{
-                marginLeft: 25,
-                paddingRight: 20,
-              }}
-            >
+          <div className="select-And-TextInput-Rectangle">
+            <label id="label-NewTodo">
               {" "}
               <i className="fa-solid fa-plus fa-lg"></i>
             </label>
@@ -370,21 +206,8 @@ export const Tasks = ({
               placeholder="Your new 'todo'"
               value={text}
               onChange={(e) => setText(e.target.value)}
-              style={{
-                position: "absolute",
-              }}
             />
-            <label
-              value=""
-              className="label-ChooseOption"
-              style={{
-                position: "absolute",
-                left: "74%",
-                bottom: "65%",
-                color: "white",
-                fontSize: 15,
-              }}
-            >
+            <label value="" className="label-ChooseOption">
               Choose option:
             </label>
             <select
@@ -392,7 +215,6 @@ export const Tasks = ({
               id="todos-Select"
               value={selectChoice}
               onChange={(e) => setSelectChoice(e.target.value)}
-              style={{ position: "absolute", bottom: "20%" }}
             >
               <option value="">---select---</option>
               <option value="home">Household duties</option>

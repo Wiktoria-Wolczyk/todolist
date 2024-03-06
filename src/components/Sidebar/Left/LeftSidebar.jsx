@@ -1,4 +1,4 @@
-import { LeftSidebarCss } from "./LeftSidebarCss.css";
+import "./LeftSidebarCss.css";
 import { useState } from "react";
 
 export const LeftSidebar = ({
@@ -9,31 +9,9 @@ export const LeftSidebar = ({
 }) => {
   return (
     <>
-      <div
-        className="Todos"
-        style={{
-          backgroundColor: "lightgray",
-          width: "20%",
-          height: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        Dinuś Mrowiec
-        <div
-          className="select-Todo-Group"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "20%",
-            height: "80%",
-            position: "absolute",
-            backgroundColor: "lightgrey",
-            top: "10%",
-            paddingTop: "2%",
-          }}
-        >
+      <div className="Todos">
+        <h4 className="groups-title">Dinuś Mrowiec</h4>
+        <div className="select-Todo-Group">
           {taskGroupList.map((group) => (
             <div
               className="showGroup"
@@ -45,8 +23,7 @@ export const LeftSidebar = ({
             >
               <div>
                 <i
-                  className={`fa-solid ${group.icon} fa-sm`}
-                  style={{ color: "grey", marginRight: 10 }}
+                  className={` iconOfDisplayedGroup fa-solid ${group.icon} fa-sm`}
                 ></i>
                 {group.text}
               </div>

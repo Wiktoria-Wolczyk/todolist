@@ -172,12 +172,7 @@ export function App() {
         clickedGroup={clickedGroup}
         setClickedGroup={setClickedGroup}
       />
-      <main
-        style={{
-          height: "100%",
-          width: "100%",
-        }}
-      >
+      <main>
         <Tasks
           taskArr={taskArr}
           setTaskArr={setTaskArr}

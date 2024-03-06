@@ -1,0 +1,150 @@
+.todosList {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.backgroundPicture {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(3px);
+}
+
+.displayTodoRectangle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: space-between;
+  z-index: 1;
+  width: "100%";
+  height: "100%";
+  margin-top: 20px;
+  margin-left: 25px;
+  margin-right: 20px;
+}
+
+.headingDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#fontInHeading {
+  font-size: 45px;
+}
+
+.completedDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.completedSpan {
+  font-size: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.completedTaskContainer {
+  background-color: beige;
+  width: 100%;
+  height: 100%;
+}
+
+.taskContainer {
+  margin-top: 0px;
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.checkboxItem {
+  margin-left: 20px;
+  margin-right: 0px;
+  width: 20px;
+  height: 20px;
+}
+
+.parentLiContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0px 20px;
+}
+
+.liContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.IndexTextAndDateDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.index {
+  margin-right: 20px;
+}
+
+.TextAndDateDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.dateSpan {
+  font-size: 12px;
+}
+
+.fa-trash-can {
+  color: #424242;
+}
+
+.todoSpan {
+  font-size: 25px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.taskContainer {
+  margin-top: 0px;
+}
+
+.select-And-TextInput-Rectangle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  height: 5%;
+}
+
+#label-NewTodo {
+  margin-left: 25px;
+  padding-right: 20px;
+}
+
+.textInput {
+  position: absolute;
+}
+
+.label-ChooseOption {
+  position: absolute;
+  left: 74%;
+  bottom: 65%;
+  color: white;
+  font-size: 15px;
+}
+
+#todos-Select {
+  position: absolute;
+  bottom: 20%;
+}

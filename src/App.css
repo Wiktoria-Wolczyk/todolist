@@ -41,6 +41,11 @@
   }
 }
 
+main {
+  height: 100%;
+  width: 100%;
+}
+
 .todosList {
   position: relative;
   width: 100%;
