@@ -97,7 +97,7 @@ export const Tasks = ({
             </span>
             <div
               className="completedTaskContainer"
-              style={{ backgroundColor: "beige", height: 300, width: 913 }}
+              style={{ backgroundColor: "beige", width: 913 }}
             >
               <ul className="taskContainer" style={{ marginTop: 0 }}>
                 {taskArr
