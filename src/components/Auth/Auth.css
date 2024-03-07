@@ -1,0 +1,114 @@
+.pageBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(64, 196, 240, 0.353);
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 70%;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.loginText {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+
+.username-password-class-text {
+  font-size: 15px;
+  margin-bottom: 5%;
+  color: rgb(70, 70, 70);
+}
+
+.divForLabelUsername {
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.inputUsername {
+  width: 80%;
+  height: 50px;
+  margin-bottom: 5%;
+  border: 0;
+  border-bottom: 2px solid rgba(64, 196, 240, 0.353);
+}
+
+.divForLabelUserpassword {
+  display: flex;
+  justify-content: flex-start;
+  width: 80%;
+}
+
+.inputUserpassword {
+  width: 80%;
+  height: 50px;
+  border: 0;
+  border-bottom: 2px solid rgba(64, 196, 240, 0.353);
+}
+
+.divForForgotpassword {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+}
+
+.forgotPassword {
+  font-size: 15px;
+  margin-top: 5%;
+  color: rgb(70, 70, 70);
+}
+
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+  width: 80%;
+  height: 60px;
+  border-radius: 30px;
+  font-size: 20px;
+  color: white;
+  border: 0;
+  background-color: violet;
+  background: rgb(221, 83, 16);
+  background: linear-gradient(
+    90deg,
+    rgba(221, 83, 16, 0.6138830532212884) 0%,
+    rgba(81, 209, 181, 1) 49%,
+    rgba(197, 80, 233, 1) 96%
+  );
+}
+
+.signUpUsingFbXGoogleContainer {
+  height: 20%;
+}
+
+.signUpUsingSignUp {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  height: 80px;
+}
+
+.textOrSignUpUsing {
+  color: rgb(70, 70, 70);
+  margin-bottom: 15px;
+}
+
+.textSignUp {
+  padding-bottom: 10%;
+}
+
+@media (min-width: 992px) {
+}
