@@ -29,6 +29,19 @@ export const Tasks = ({
     return formattedDate;
   };
 
+  const sortedDates = () => {
+    let sortedComplete = taskArr.sort((a, b) => {
+      let da = new Date(a.complete);
+      let db = new Date(b.complete);
+
+      return da - db;
+    });
+    return sortedComplete;
+  };
+
+  sortedDates();
+  console.log(sortedDates());
+
   return (
     <main className="todosList">
       <img
@@ -54,6 +67,12 @@ export const Tasks = ({
                     return task.choice === clickedGroup;
                   }
                 }
+              })
+              .sort((a, b) => {
+                let da = new Date(a.completedAt);
+                let db = new Date(b.completedAt);
+
+                return da - db;
               })
               .map((task, index) => {
                 return (
@@ -127,6 +146,12 @@ export const Tasks = ({
                 } else {
                   return task.choice === clickedGroup;
                 }
+              })
+              .sort((a, b) => {
+                let da = new Date(a.createdAt);
+                let db = new Date(b.createdAt);
+
+                return da - db;
               })
               .map((task, index) => {
                 if (task.complete === true) {

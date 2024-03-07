@@ -15,7 +15,6 @@ export const RightSidebar = ({
   setSelectTaskOption,
 }) => {
   const [taskDescription, setTaskDescription] = useState("");
-
   const [taskTitle, setTaskTitle] = useState(task?.text);
 
   useEffect(() => {
@@ -32,12 +31,15 @@ export const RightSidebar = ({
         {inputClicked ? (
           <input
             type="text"
-            name="taskText"
+            className="taskText"
             value={taskTitle}
             onChange={(e) => setTaskTitle(e.target.value)}
           />
         ) : (
-          <span onClick={() => setInputClicked(!inputClicked)}>
+          <span
+            className="titleOfClickedTask"
+            onClick={() => setInputClicked(!inputClicked)}
+          >
             {task.text}
           </span>
         )}

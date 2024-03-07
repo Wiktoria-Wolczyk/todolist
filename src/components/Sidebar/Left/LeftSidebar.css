@@ -1,7 +1,6 @@
 .Todos {
   background-color: lightgray;
   width: 100%;
-  min-height: 35%;
   height: 50vh;
   display: flex;
   flex-direction: column;
@@ -18,7 +17,9 @@
   align-items: center;
   background-color: lightgrey;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .showGroup {
@@ -64,6 +65,8 @@
     align-items: center;
     background-color: lightgrey;
     margin-top: 25px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .showGroup {
@@ -73,7 +76,7 @@
     margin-bottom: 20px;
     font-size: 20px;
     background-color: rgb(192, 192, 192);
-    width: 220px;
+    width: 85%;
     height: 40px;
     border-radius: 10px;
     padding-left: 10px;
