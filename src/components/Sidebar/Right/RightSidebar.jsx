@@ -1,4 +1,5 @@
 import "./RightSidebar.css";
+import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 
 export const RightSidebar = ({
@@ -73,6 +74,7 @@ export const RightSidebar = ({
               description: taskDescription,
               choice: selectTaskOption,
             });
+            toast.success("Saved successfully");
           }}
         >
           Save

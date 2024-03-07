@@ -4,6 +4,7 @@ import { LeftSidebar } from "./components/Sidebar/Left/LeftSidebar";
 import { Tasks } from "./components/Tasks";
 import { RightSidebar } from "./components/Sidebar/Right/RightSidebar";
 import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 const constantTasks = [
   {
@@ -201,6 +202,7 @@ export function App() {
         selectTaskOption={selectTaskOption}
         setSelectTaskOption={setSelectTaskOption}
       />
+      <Toaster />
     </div>
   );
 }

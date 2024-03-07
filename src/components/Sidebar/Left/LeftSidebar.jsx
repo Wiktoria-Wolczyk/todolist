@@ -1,4 +1,5 @@
 import "./LeftSidebar.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LeftSidebar = ({
   taskArr,
@@ -6,10 +7,27 @@ export const LeftSidebar = ({
   clickedGroup,
   setClickedGroup,
 }) => {
+  const navigate = useNavigate();
+  const isLoggedIn = false;
+
   return (
     <>
       <div className="Todos">
-        <h4 className="groups-title">Dinuś Mrowiec</h4>
+        {isLoggedIn ? (
+          <h4 className="groups-title">Dinuś Mrowiec</h4>
+        ) : (
+          <button
+            style={{ height: "50px", margin: "20px" }}
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/auth");
+            }}
+          >
+            Login
+          </button>
+        )}
+
+        <Link to="/hello">Hello</Link>
         <div className="select-Todo-Group">
           {taskGroupList.map((group) => (
             <div

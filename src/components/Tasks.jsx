@@ -1,6 +1,7 @@
 import "./Tasks.css";
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
+import dateFormat, { masks } from "dateformat";
 
 export const Tasks = ({
   taskArr,
@@ -28,19 +29,6 @@ export const Tasks = ({
 
     return formattedDate;
   };
-
-  const sortedDates = () => {
-    let sortedComplete = taskArr.sort((a, b) => {
-      let da = new Date(a.complete);
-      let db = new Date(b.complete);
-
-      return da - db;
-    });
-    return sortedComplete;
-  };
-
-  sortedDates();
-  console.log(sortedDates());
 
   return (
     <main className="todosList">
@@ -116,10 +104,14 @@ export const Tasks = ({
                             </span>
                             <span className="dateSpan">
                               {task.complete
-                                ? `Completed at: ${formatDate(
-                                    task?.completedAt
+                                ? `Completed at: ${dateFormat(
+                                    new Date(task?.completedAt),
+                                    " dS, yyyy, h:MM:ss TT"
                                   )}`
-                                : formatDate(task.createdAt)}
+                                : dateFormat(
+                                    new Date(task.createdAt),
+                                    " dS, yyyy, h:MM:ss TT"
+                                  )}
                             </span>
                           </div>
                         </div>
