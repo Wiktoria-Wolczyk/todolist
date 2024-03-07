@@ -1,5 +1,4 @@
-import "./LeftSidebarCss.css";
-import { useState } from "react";
+import "./LeftSidebar.css";
 
 export const LeftSidebar = ({
   taskArr,

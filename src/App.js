@@ -172,22 +172,20 @@ export function App() {
         clickedGroup={clickedGroup}
         setClickedGroup={setClickedGroup}
       />
-      <main>
-        <Tasks
-          taskArr={taskArr}
-          setTaskArr={setTaskArr}
-          clickedGroup={clickedGroup}
-          clickedTaskId={clickedTaskId}
-          setClickedTaskId={setClickedTaskId}
-          handleCheckboxClick={handleCheckboxClick}
-          setInputClicked={setInputClicked}
-          inputClicked={inputClicked}
-          selectTaskOption={selectTaskOption}
-          setSelectTaskOption={setSelectTaskOption}
-          taskCompleted={taskCompleted}
-          setTaskCompleted={setTaskCompleted}
-        />
-      </main>
+      <Tasks
+        taskArr={taskArr}
+        setTaskArr={setTaskArr}
+        clickedGroup={clickedGroup}
+        clickedTaskId={clickedTaskId}
+        setClickedTaskId={setClickedTaskId}
+        handleCheckboxClick={handleCheckboxClick}
+        setInputClicked={setInputClicked}
+        inputClicked={inputClicked}
+        selectTaskOption={selectTaskOption}
+        setSelectTaskOption={setSelectTaskOption}
+        taskCompleted={taskCompleted}
+        setTaskCompleted={setTaskCompleted}
+      />
 
       {/* jakis task */}
       <RightSidebar

@@ -1,6 +1,6 @@
+import "./Tasks.css";
 import { useState } from "react";
 import backgroundphoto from "./backgroundphoto.jpg";
-import "./Tasks.css";
 
 export const Tasks = ({
   taskArr,
@@ -30,98 +30,94 @@ export const Tasks = ({
   };
 
   return (
-    <>
-      <div className="todosList">
-        <img
-          className="backgroundPicture"
-          src={backgroundphoto}
-          alt="burdz chalifa"
-        />
-        <div className="displayTodoRectangle">
-          <div className="headingDiv">
-            <span id="fontInHeading">Today's tasks</span>
-            {new Date().toDateString()}
-          </div>
-          <div className="completedDiv">
-            <span className="completedSpan">Completed:</span>
-            <div className="completedTaskContainer">
-              <ul className="taskContainer">
-                {taskArr
-                  .filter((task) => {
-                    if (task.complete === true) {
-                      if (clickedGroup === "all") {
-                        return true;
-                      } else {
-                        return task.choice === clickedGroup;
-                      }
-                    }
-                  })
-                  .map((task, index) => {
-                    return (
-                      <li
-                        className="taskItem"
-                        key={task.id}
-                        onClick={() => {
-                          setClickedTaskId(task.id);
-                          setSelectTaskOption(task.choice);
-                          inputClicked && setInputClicked(!inputClicked);
-                        }}
-                        style={{
-                          backgroundColor:
-                            clickedTaskId === task.id ? "darkgrey" : "white",
-                        }}
-                      >
-                        <input
-                          className="checkboxItem"
-                          type="checkbox"
-                          checked={task.complete}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
-                          onChange={() => handleCheckboxClick(task.id)}
-                        ></input>
+    <main className="todosList">
+      <img
+        className="backgroundPicture"
+        src={backgroundphoto}
+        alt="burdz chalifa"
+      />
+      <div className="displayTodoRectangle">
+        <div className="headingDiv">
+          <span className="tasksHeader">Today's tasks</span>
+          {new Date().toDateString()}
+        </div>
 
-                        <div className="parentLiContainer">
-                          <div className="liContainer">
-                            <div className="IndexTextAndDateDiv">
-                              <span className="index">{index + 1}.</span>
-                              <div className="TextAndDateDiv">
-                                <span
-                                  className="textSpan"
-                                  style={{
-                                    textDecoration: task.complete
-                                      ? "line-through"
-                                      : "none",
-                                  }}
-                                >
-                                  {task.text}
-                                </span>
-                                <span className="dateSpan">
-                                  {task.complete
-                                    ? `Completed at: ${formatDate(
-                                        task?.completedAt
-                                      )}`
-                                    : formatDate(task.createdAt)}
-                                </span>
-                              </div>
-                            </div>
-                            <span id="choice">{task.choice}</span>
+        <div className="listContainer">
+          <span className="completedSpan">Completed:</span>
+          <ul className="taskContainer">
+            {taskArr
+              .filter((task) => {
+                if (task.complete === true) {
+                  if (clickedGroup === "all") {
+                    return true;
+                  } else {
+                    return task.choice === clickedGroup;
+                  }
+                }
+              })
+              .map((task, index) => {
+                return (
+                  <li
+                    className="taskItem"
+                    key={task.id}
+                    onClick={() => {
+                      setClickedTaskId(task.id);
+                      setSelectTaskOption(task.choice);
+                      inputClicked && setInputClicked(!inputClicked);
+                    }}
+                    style={{
+                      backgroundColor:
+                        clickedTaskId === task.id ? "darkgrey" : "white",
+                    }}
+                  >
+                    <input
+                      className="checkboxItem"
+                      type="checkbox"
+                      checked={task.complete}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                      onChange={() => handleCheckboxClick(task.id)}
+                    ></input>
+
+                    <div className="parentLiContainer">
+                      <div className="liContainer">
+                        <div className="IndexTextAndDateDiv">
+                          <span className="index">{index + 1}.</span>
+                          <div className="TextAndDateDiv">
+                            <span
+                              className="textSpan"
+                              style={{
+                                textDecoration: task.complete
+                                  ? "line-through"
+                                  : "none",
+                              }}
+                            >
+                              {task.text}
+                            </span>
+                            <span className="dateSpan">
+                              {task.complete
+                                ? `Completed at: ${formatDate(
+                                    task?.completedAt
+                                  )}`
+                                : formatDate(task.createdAt)}
+                            </span>
                           </div>
-                          <i
-                            onClick={() => {
-                              setTaskArr(
-                                taskArr.filter((t) => t.id !== task.id)
-                              );
-                            }}
-                            className="fa-solid fa-trash-can"
-                          ></i>
                         </div>
-                      </li>
-                    );
-                  })}
-              </ul>
-            </div>
-          </div>
+                        <span className="taskChoice">{task.choice}</span>
+                      </div>
+                      <i
+                        onClick={() => {
+                          setTaskArr(taskArr.filter((t) => t.id !== task.id));
+                        }}
+                        className="fa-solid fa-trash-can"
+                      ></i>
+                    </div>
+                  </li>
+                );
+              })}
+          </ul>
+
           <span className="todoSpan">To do:</span>
           <ul className="taskContainer">
             {taskArr
@@ -181,7 +177,7 @@ export const Tasks = ({
                             </span>
                           </div>
                         </div>
-                        <span id="choice">{task.choice}</span>
+                        <span className="taskChoice">{task.choice}</span>
                       </div>
                       <i
                         onClick={() => {
@@ -194,25 +190,24 @@ export const Tasks = ({
                 );
               })}
           </ul>
+        </div>
 
-          <div className="select-And-TextInput-Rectangle">
-            <label id="label-NewTodo">
-              {" "}
-              <i className="fa-solid fa-plus fa-lg"></i>
-            </label>
-            <input
-              className="textInput"
-              type="text"
-              placeholder="Your new 'todo'"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
+        <div className="addToDoContainer">
+          <i className="fa-solid fa-plus fa-lg plus-sign"></i>
+          <input
+            className="textInput"
+            type="text"
+            placeholder="Your new 'todo'"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+
+          <div className="addTodoSelectContainer">
             <label value="" className="label-ChooseOption">
               Choose option:
             </label>
             <select
-              className="todos"
-              id="todos-Select"
+              className="addTodoSelect"
               value={selectChoice}
               onChange={(e) => setSelectChoice(e.target.value)}
             >
@@ -221,29 +216,30 @@ export const Tasks = ({
               <option value="work">Tasks at work</option>
               <option value="shop">Shopping list</option>
             </select>
-            <i
-              className="fa-solid fa-chevron-right fa-lg"
-              onClick={() => {
-                setTaskArr([
-                  ...taskArr,
-                  {
-                    id: taskArr[taskArr.length - 1].id + 1,
-                    text: text,
-                    choice: selectChoice,
-                    createdAt: new Date(),
-                  },
-                ]);
-                setText("");
-                setSelectChoice("");
-              }}
-              style={{
-                pointerEvents:
-                  text === "" || selectChoice === "" ? "none" : "auto",
-              }}
-            ></i>
           </div>
+
+          <i
+            className="fa-solid fa-chevron-right fa-lg"
+            onClick={() => {
+              setTaskArr([
+                ...taskArr,
+                {
+                  id: taskArr[taskArr.length - 1].id + 1,
+                  text: text,
+                  choice: selectChoice,
+                  createdAt: new Date(),
+                },
+              ]);
+              setText("");
+              setSelectChoice("");
+            }}
+            style={{
+              pointerEvents:
+                text === "" || selectChoice === "" ? "none" : "auto",
+            }}
+          ></i>
         </div>
       </div>
-    </>
+    </main>
   );
 };

@@ -1,4 +1,4 @@
-import { RightSidebarCss } from "./RightSidebarCss.css";
+import "./RightSidebar.css";
 import { useEffect, useState } from "react";
 
 export const RightSidebar = ({
@@ -28,16 +28,21 @@ export const RightSidebar = ({
   }
   return (
     <div className="rightSidebar-Background" key={task.id}>
-      {inputClicked ? (
-        <input
-          type="text"
-          name="taskText"
-          value={taskTitle}
-          onChange={(e) => setTaskTitle(e.target.value)}
-        />
-      ) : (
-        <span onClick={() => setInputClicked(!inputClicked)}>{task.text}</span>
-      )}
+      <div className="header">
+        {inputClicked ? (
+          <input
+            type="text"
+            name="taskText"
+            value={taskTitle}
+            onChange={(e) => setTaskTitle(e.target.value)}
+          />
+        ) : (
+          <span onClick={() => setInputClicked(!inputClicked)}>
+            {task.text}
+          </span>
+        )}
+      </div>
+
       <div className="display-Selected-Task">
         <label className="label-TypeOfTask">Type of task:</label>
         <select
